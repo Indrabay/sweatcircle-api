@@ -592,6 +592,172 @@ Sweatcircle app API blueprint
             ]
         }
         
+### Create Activity [POST /users/activities]
+
++ Request (application/json)
+
+        {
+            "sport_id": 1,
+            "name": "Basketball Paradise",
+            "description": "An activity to provide young athlete to match",
+            "latitude": "-7.771337",
+            "longitude": "110.345976",
+            "start_at": 1496710635,
+            "end_at": 1496710635,
+            "reminder": 1800,
+            "minimum_skill": 4,
+            "gender": 2,
+            "friends": [
+                {
+                    "id": 3,
+                    "first_name": "Jon",
+                    "last_name": "Snow",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                {
+                    "id": 5,
+                    "first_name": "Bran",
+                    "last_name": "Stark",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                }
+            ],
+            "quota": 200,
+            "disoverable": 2,
+            "guess_can_invite": true,
+            "additional_information": "Bring your own equipment, please attend on time"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Activity Data",
+            "data": {}
+        }
+
+### Update Activity [PUT /users/activities/{?id}]
+
++ Request
+    + Headers
+        
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Body
+
+            {
+                "sport_id": 1,
+                "name": "Basketball Paradise",
+                "description": "An activity to provide young athlete to match",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "start_at": 1496710635,
+                "end_at": 1496710635,
+                "reminder": 1800,
+                "minimum_skill": 4,
+                "gender": 2,
+                "friends": [
+                    {
+                        "id": 3,
+                        "first_name": "Jon",
+                        "last_name": "Snow",
+                        "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                    },
+                    {
+                        "id": 5,
+                        "first_name": "Bran",
+                        "last_name": "Stark",
+                        "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                    }
+                ],
+                "quota": 200,
+                "disoverable": 2,
+                "guess_can_invite": true,
+                "additional_information": "Bring your own equipment, please attend on time"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Activity Data",
+            "data": {}
+        }
+
+### Detail Activity [GET /users/activities/{?id}]
+
++ Request
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Parameters
+        + id: 2 (number, required)
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Activity Data",
+            "data": {
+                "name": "Basket Paradise",
+                "start_at": 1496710635,
+                "end_at": 1496710635,
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "sports": {
+                    "id": 2,
+                    "name": "Basketball"
+                },
+                "gender": 2,
+                "level": 2,
+                "discoverable": 0,
+                "additional_message": "Please bring your own equipment. We do not reponsible for any damage or lost of your personal belonging."
+            }
+        }
+
+### Complete Activity [PUT /users/activies/{?id}/completed]
+
++ Request
+    + Headers
+        
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Body
+
+            {
+                "_activity_id": 2,
+                "photos": "urls",
+                "videos": "urls"
+            }
+    
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Activity Completed Data",
+            "data": {}
+        }
+
+### Delete Activity [DELETE /users/activities/{?id}]
+
++ Request
+    + Headers
+        
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Activity Data",
+            "data": {}
+        }
+        
 ## Group collection [/groups]
 
 ### Create Group [POST /groups]
@@ -601,13 +767,89 @@ Sweatcircle app API blueprint
         {
             "name": "Galaxy Running",
             "description": "Galaxy Running description",
-            "sport": 1",
+            "sport": 1,
             "level_minimum": 1,
             "gender": 1,
             "privacy": 1,
             "friend_invite": 1,
             "additional_information": "Additional information for Galaxy Running",
-            "member": [3]
+            "member": [3],
+            "photo_group": "data:image/png;base64,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",
+            "photo_cover": "data:image/png;base64,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"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "code": 201,
+            "status": true,
+            "message": "Group Data",
+            "data": {
+                "group_id": 2,
+                "name": "Galaxy Running",
+                "description": "Galaxy Running description",
+                "sport":
+                {
+                    "sport_id": 1,
+                    "name": "Running"
+                },
+                "level_minimum": 1,
+                "gender": 1,
+                "privacy": 1,
+                "friend_invite": 1,
+                "photo_group": "https://cdn0-a.production.liputan6.static6.com/medias/1110230/big/020987500_1452682808-20160113-Peltia-Jaya-Tumbangkan-Bima-Sakti-HEL3.jpg",
+                "photo_cover": "https://ngobrolbasket.files.wordpress.com/2015/04/smb-v-bsm.jpg?w=474&h=451",
+                "additional_information": "Additional information for Galaxy Running",
+                "member_count": 2,
+                "created_at": 1496710635
+            }
+        }
+
+### Detail Group [GET /groups/{id}]
+
++ Parameters
+    + id : 2 (number)
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Group Data",
+            "data":
+            {
+                "group_id": 2,
+                "name": "Galaxy Running",
+                "description": "Galaxy Running description",
+                "sport":{
+                    "sport_id": 1,
+                    "name": "Running"
+                },
+                "level_minimum": 1,
+                "gender": 1,
+                "privacy": 1,
+                "friend_invite": 1,
+                "additional_information": "Additional information for Galaxy Running",
+                "member_count":,
+                "created_at": 1496710635
+            }
+        }
+        
+### Update Group [PUT /groups]
+
++ Request (application/json)
+
+        {
+            "name": "Galaxy Running",
+            "description": "Galaxy Running description",
+            "sport": 1,
+            "level_minimum": 1,
+            "gender": 1,
+            "privacy": 1,
+            "friend_invite": 1,
+            "additional_information": "Additional information for Galaxy Running",
+            "photo_group": "data:image/png;base64,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",
+            "photo_cover": "data:image/png;base64,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"
         }
 
 + Response 201 (application/json)
@@ -615,30 +857,92 @@ Sweatcircle app API blueprint
         {
             "code": 200,
             "status": true,
-            "message": "User Data",
+            "message": "Group Data",
             "data": {
+                "group_id": 2,
                 "name": "Galaxy Running",
                 "description": "Galaxy Running description",
-                "sport": 1",
+                "sport":
+                {
+                    "sport_id": 1,
+                    "name": "Running"
+                },
                 "level_minimum": 1,
                 "gender": 1,
                 "privacy": 1,
                 "friend_invite": 1,
+                "photo_group": "https://cdn0-a.production.liputan6.static6.com/medias/1110230/big/020987500_1452682808-20160113-Peltia-Jaya-Tumbangkan-Bima-Sakti-HEL3.jpg",
+                "photo_cover": "https://ngobrolbasket.files.wordpress.com/2015/04/smb-v-bsm.jpg?w=474&h=451",
                 "additional_information": "Additional information for Galaxy Running",
-                "member": [{
+                "member_count": 2,
+                "created_at": 1496710635
+            }
+        }
+
+### Delete Group [DELETE  /groups/{id}] 
++ Parameters
+    + id : 2 (number)
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Group Data",
+            "data": {}
+        }
+        
+### Member Group [GET /groups/{id}/member]  
++ Parameters
+    + id : 2 (number)
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Group Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 2
+            },
+            "data":[
+                {
                     "user_id": 2,
                     "first_name": "Tony",
                     "last_name": "Judt Smith",
                     "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
                     "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
                     "status_member": 1
-                }, {
+                },
+                {
                     "user_id": 3,
                     "first_name": "Yusuf",
                     "last_name": "Aji Wibowo",
                     "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
                     "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
-                }],
-                "created_at": 1496710635
-            }
+                    "status_member": 0
+                }]
+        }
+        
+### Suggest Member [POST /groups/{id}/member]
++ Parameters
+    + id : 2 (number)
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Group Data",
+            "data":
+                {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "status_member": 0
+                }
         }
