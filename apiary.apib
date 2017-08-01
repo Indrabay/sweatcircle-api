@@ -44,23 +44,9 @@ Sweatcircle app API blueprint
 + Request (application/json)
 
         {
-            "first_name": "Tony",
-            "last_name": "Judt Smith",
-            "display_name": "PramSmith",
-            "date_of_birth": 5072400,
-            "gender": "male",
-            "sports": [
-                {
-                    "id": 1,
-                    "name": "cycling",
-                    "level": 5
-                },
-                {
-                    "id": 7,
-                    "name": "zumba",
-                    "level": 1
-                }
-            ]
+            "phone": "0821934853485",
+            "email": "pram@skyshi.com",
+            "password": "user"
         }
 
 + Response 201 (application/json)
@@ -69,21 +55,7 @@ Sweatcircle app API blueprint
             "code": 200,
             "status": true,
             "message": "User Data",
-            "data": {
-                "user_id": 2,
-                "first_name": "Tony",
-                "last_name": "Judt Smith",
-                "display_name": "PramSmith",
-                "latitude": "-7.771337",
-                "longitude": "110.345976",
-                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
-                "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
-                "email": "pram@skyshi.com",
-                "status": 1,
-                "privacy": 1,
-                "created_at": 1496710635,
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs"
-            }
+            "data": {}
         }
 
 ### Get Profile [GET /users]
@@ -187,7 +159,8 @@ Sweatcircle app API blueprint
                 "email": "pram@skyshi.com",
                 "status": 1,
                 "privacy": 1,
-                "created_at": 1496710635
+                "created_at": 1496710635,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs"
         }
 
 ### Get Stories [GET /users/stories?page={?page}&limit={?limit}]
