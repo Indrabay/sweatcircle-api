@@ -1,0 +1,420 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# sweatcircle
+
+Sweatcircle app API blueprint
+
+## User Collection [/]
+
+### Login [POST /login ]
+
++ Request (application/json)
+
+        {
+            "email": "pram@skyshi.com",
+            "password": "user"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "statue": true,
+            "message": "User Data",
+            "data": {
+                "user_id": 2,
+                "first_name": "Tony",
+                "last_name": "Judt Smith",
+                "display_name": "PramSmith",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "email": "pram@skyshi.com",
+                "status": 1,
+                "privacy": 1,
+                "created_at": 1496710635,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs"
+            }
+        }
+
+### Register [POST /users]
+
++ Request (application/json)
+
+        {
+            "first_name": "Tony",
+            "last_name": "Judt Smith",
+            "display_name": "PramSmith",
+            "date_of_birth": 5072400,
+            "gender": "male",
+            "sports": [
+                {
+                    "id": 1,
+                    "name": "cycling",
+                    "level": 5
+                },
+                {
+                    "id": 7,
+                    "name": "zumba",
+                    "level": 1
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Data",
+            "data": {
+                "user_id": 2,
+                "first_name": "Tony",
+                "last_name": "Judt Smith",
+                "display_name": "PramSmith",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "email": "pram@skyshi.com",
+                "status": 1,
+                "privacy": 1,
+                "created_at": 1496710635,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs"
+            }
+        }
+
+### Get Profile [GET /users]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Profile Data",
+            "data": {
+                "user": {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "display_name": "PramSmith",
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "email": "pram@skyshi.com",
+                    "status": 1,
+                    "privacy": 1,
+                    "created_at": 1496710635
+                },
+                "follow": {
+                    "follower": 800,
+                    "following": 20
+                },
+                "group_count": 39,
+                "event_count": 30
+            }
+        }
+        
+### Edit Profile [PUT /users]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Body
+        
+            {
+                "display_name": "PramSmith",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "email": "pram@skyshi.com",
+                "password": "user",
+                "privacy": 1,
+                "sports": [
+                    {
+                        "id": 1,
+                        "name": "badminton",
+                        "level": 3
+                    },
+                    {
+                        "id": 3,
+                        "name": "cycling",
+                        "level": 5
+                    },
+                    {
+                        "id": 6,
+                        "name": "hiking",
+                        "level": 2
+                    },
+                    {
+                        "id": 8,
+                        "name": "volleyball",
+                        "level": 5
+                    },
+                    {
+                        "id": 10,
+                        "name": "zumba",
+                        "level": 2
+                    }
+                ]
+            }
+    
++ Response 201 (application/json)
+
+        {
+            
+            "code": 200,
+            "status": true,
+            "message": "User Data",
+            "data": {
+                "user_id": 2,
+                "first_name": "Tony",
+                "last_name": "Judt Smith",
+                "display_name": "PramSmith",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "email": "pram@skyshi.com",
+                "status": 1,
+                "privacy": 1,
+                "created_at": 1496710635
+        }
+
+### Get Stories [GET /users/stories?page={?page}&limit={?limit}]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
+    + Parameters 
+        + page: 1 (number)
+        + limit: 10 (number)
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Stories Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+            }
+            "data": [
+                {
+                    "id": 3,
+                    "content": "We are proudly present our new swimmer",
+                    "attachments": [
+                        {
+                            "id": 4,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        },
+                        {
+                            "id": 8,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "like_id": 77,
+                    "comment_id": 75
+                },
+                {
+                    "id": 2,
+                    "content": "Every winner should know this great technique",
+                    "attachments": [],
+                    "like_id": 7,
+                    "comment_id": 65
+                },
+                {
+                    "id": 1,
+                    "content": "Get your fat down to zero with me",
+                    "attachments": [
+                        {
+                            "id": 90,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "like_id": 3,
+                    "comment_id": 34
+                }
+            ]
+        }
+        
+### Get Interest [GET /users/interest?filter={?filter}&page={?page}&limit={?limit}]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
+    + Parameters
+        + filter: 2 (number)
+        + page: 1 (number)
+        + limit: 10 (number)
+            
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Interest Data",
+            "meta": {
+                "page": 1,
+                "limit": 10
+            },
+            "data": [
+                {
+                    "id": 4,
+                    "type": 1,
+                    "name": "Skyshi League",
+                    "description": "Skyshi tournament",
+                    "attachments": [
+                        {
+                            "id": 88,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "start_date": 1496710635,
+                    "end_data": 1496710635,
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
+                    "like_id": 2,
+                    "comment_id": 5
+                },
+                {
+                    "id": 3,
+                    "type": 0,
+                    "name": "Skyshi Badminton",
+                    "description": "",
+                    "attachments": [
+                        {
+                            "id": 88,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "start_date": null,
+                    "end_data": null,
+                    "latitude": "",
+                    "longitude": "",
+                    "like_id": 1,
+                    "comment_id": 3
+                }
+            ]
+        }
+        
+## Activity collection [/activities]
+
+### My Activity [GET /activities/users?page={?page}&limit={?limit}]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
+    + Parameters
+        + page: 1 (number)
+        + limit: 10 (number)
+        
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Activity Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 2
+            },
+            "data": [
+                {
+                    "id": 3,
+                    "name": "Traveloka League",
+                    "description": "Traveloka sport tournament",
+                    "attachments": [
+                        {
+                            "id": 88,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "start_date": 1496710635,
+                    "end_date": 1496710635,
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
+                    "like_id": 4,
+                    "comment_id": 6
+                },
+                {
+                    "id": 5,
+                    "name": "Traveloka League",
+                    "description": "Traveloka sport tournament",
+                    "attachments": [
+                        {
+                            "id": 88,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "start_date": 1496710635,
+                    "end_date": 1496710635,
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
+                    "like_id": 6,
+                    "comment_id": 9
+                }
+            ]
+        }
+
+### Discover Activity [GET /activities?page={?page}&limit={?limit}&latitude={?latitude}&longitude={?longitude}]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
+    + Parameters
+        + page: 1 (number)
+        + limit: 10 (number)
+        + latitude: "-7.771337" (string)
+        + longitude: "110.345976" (string)
+        
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Activity Discover Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 1
+            },
+            "data": [
+                {
+                    "id": 88,
+                    "name": "Traveloka League",
+                    "description": "Traveloka sport tournament",
+                    "attachments": [
+                        {
+                            "id": 90,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "start_date": 1496710635,
+                    "end_date": 1496710635,
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
+                    "like_id": 7,
+                    "comment_id": 10
+                }
+            ]
+        }
