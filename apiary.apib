@@ -854,6 +854,45 @@ Sweatcircle app API blueprint
             "message": "Activity Data",
             "data": {}
         }
+
+### Like Activity [POST /activities/{?id}/like]
+
++ Request
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Parameters
+        + id: 5 (number, required)
+
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Like Activity Data",
+            "data": {}
+        }
+
+### Share Activity [PUT /activities/{?id}/share]
+
++ Request
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Parameters
+        + id: 5 (number, required)
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Share Activity Data",
+            "data": {}
+        }
         
 ## Group collection [/groups]
 
