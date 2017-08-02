@@ -39,6 +39,39 @@ Sweatcircle app API blueprint
             }
         }
 
+### Login Facebook [POST /social-login]
+
++ Request (application/json)
+
+            {
+                "provider_name": "Facebook",
+                "provider_uid": "12345678",
+                "access_token": "EAAViKAqZCMswBAM1UqlZBZAFRd6OyX0C5b9VpVU0mO0dKWduiZBRC2BqJ3wvHyKkJqUz53IUkr0RBByiFtWWRFcBtV3ZBUA8vSQCnbVvD76vTzuF75YtixmN5K0v00eN0u5DHfGGasSzUYWAOKYfkXglmL4DMMZB8aspE5bqN57h2sNO5CT8Nwhmz7kfbgZCBIZD"
+            }
+        
++ Response 200 (application/json)
+
+            {
+                "code": 200,
+                "statue": true,
+                "message": "User Data",
+                "data": {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "display_name": "PramSmith",
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "email": "pram@skyshi.com",
+                    "status": 1,
+                    "privacy": 1,
+                    "created_at": 1496710635,
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs"
+                }
+            }
+
 ### Register [POST /users]
 
 + Request (application/json)
@@ -925,21 +958,27 @@ Sweatcircle app API blueprint
 
 + Request (application/json)
 
-        {
-            "name": "Galaxy Running",
-            "description": "Galaxy Running description", 
-            "sport": {
-                "user_id": 3,
-                "level": 1
-            },
-            "gender": 1,
-            "privacy": 1,
-            "friend_invite": 1,
-            "additional_information": "Additional information for Galaxy Running",
-            "member": [3],
-            "photo_group": "data:image/png;base64,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",
-            "photo_cover": "data:image/png;base64,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"
-        }
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Body
+        
+            {
+                "name": "Galaxy Running",
+                "description": "Galaxy Running description", 
+                "sport": {
+                    "user_id": 3,
+                    "level": 1
+                },
+                "gender": 1,
+                "privacy": 1,
+                "friend_invite": 1,
+                "additional_information": "Additional information for Galaxy Running",
+                "member": [3],
+                "photo_group": "data:image/png;base64,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",
+                "photo_cover": "data:image/png;base64,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"
+            }
 
 + Response 201 (application/json)
 
@@ -973,6 +1012,12 @@ Sweatcircle app API blueprint
 + Parameters
     + id : 2 (number)
 
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
 + Response 200 (application/json)
 
         {
@@ -998,24 +1043,33 @@ Sweatcircle app API blueprint
             }
         }
         
-### Update Group [PUT /groups]
+### Update Group [PUT /groups/{id}]
 
++ Parameters
+    + id : 1 (number)
+    
 + Request (application/json)
+    
+    + Headers
 
-        {
-            "name": "Galaxy Running",
-            "description": "Galaxy Running description",
-            "sport": {
-                "user_id": 3,
-                "level": 1
-            },
-            "gender": 1,
-            "privacy": 1,
-            "friend_invite": 1,
-            "additional_information": "Additional information for Galaxy Running",
-            "photo_group": "data:image/png;base64,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",
-            "photo_cover": "data:image/png;base64,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"
-        }
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Body
+        
+            {
+                "name": "Galaxy Running",
+                "description": "Galaxy Running description",
+                "sport": {
+                    "user_id": 3,
+                    "level": 1
+                },
+                "gender": 1,
+                "privacy": 1,
+                "friend_invite": 1,
+                "additional_information": "Additional information for Galaxy Running",
+                "photo_group": "data:image/png;base64,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",
+                "photo_cover": "data:image/png;base64,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"
+            }
 
 + Response 200 (application/json)
 
@@ -1044,8 +1098,15 @@ Sweatcircle app API blueprint
         }
 
 ### Delete Group [DELETE  /groups/{id}] 
+
 + Parameters
     + id : 2 (number)
+
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
 
 + Response 200 (application/json)
 
@@ -1057,8 +1118,15 @@ Sweatcircle app API blueprint
         }
         
 ### Member Group [GET /groups/{id}/member]  
+
 + Parameters
     + id : 2 (number)
+        
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
 
 + Response 200 (application/json)
 
@@ -1089,9 +1157,16 @@ Sweatcircle app API blueprint
         }
         
 ### Suggest Member [POST /groups/{id}/member]
+
 + Parameters
     + id : 2 (number)
-    
+        
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+  
 + Request (application/json)
 
         {
@@ -1115,9 +1190,16 @@ Sweatcircle app API blueprint
         }
         
 ### Delete Member [DELETE /groups/{id}/member/{user_id}]
+
 + Parameters
     + id : 2 (number)
     + user_id: 3 (number)
+    
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
 
 + Response 200 (application/json)
 
@@ -1130,11 +1212,19 @@ Sweatcircle app API blueprint
         
 ### List Discover Group [GET /groups{?page}{?limit}{?filter}{?q}]
 
+ 
 + Parameters
     + page : 1 (number)
     + limit: 10 (number)
     + filter: most_popular (String)
     + q: basket (String)
+    
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
 
 + Response 200 (application/json)
 
@@ -1218,6 +1308,13 @@ Sweatcircle app API blueprint
     + limit: 10 (number)
     + filter: most_popular (String)
     + q: basket (String)
+        
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
 
 + Response 200 (application/json)
 
@@ -1298,12 +1395,18 @@ Sweatcircle app API blueprint
 
 + Parameters
     + id : 1 (number)
-    
-+ Request (application/json)
+        
++ Request
 
-        {
-            "user_id": 2
-        }
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
+    + Body
+    
+            {
+                "user_id": 2
+            }
 
 + Response 200 (application/json)
 
@@ -1325,3 +1428,278 @@ Sweatcircle app API blueprint
                 "status_member": 1
                 }
         }
+        
+## Message collection [/conversations]
+
+### List Conversation [GET /conversations{?page}{?limit}]
++ Parameters
+    + page : 1 (number)
+    + limit: 10 (number)
+    
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
+    
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Message Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 2
+            },
+            "data":[
+            {
+                "conversation_id": 1,
+                "user_1": {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "user_2": {
+                    "user_id": 3,
+                    "first_name": "Yusuf",
+                    "last_name": "Aji Wibowo",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "updated_at": 1496710635,
+                "unread_count": 5
+            }, {
+                "conversation_id": 2,
+                "user_1": {
+                    "user_id": 4,
+                    "first_name": "Indra",
+                    "last_name": "Bayu Kusuma",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "user_2": {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "updated_at": 1496710635,
+                "unread_count": 2
+            }]
+        }
+        
+### Send Message [POST /messages]
+    
++ Request
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+           
+    + Body
+
+            {
+                "content": "Hello World!",
+                "user_id": 4
+            }
+    
++ Response 201 (application/json)
+
+        {
+            "code": 201,
+            "status": true,
+            "message": "Message Data",
+            "data":
+            {
+                "message_id": 2,
+                "content": "Tony",
+                "sender": {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "recevier": {
+                    "user_id": 4,
+                    "first_name": "Indra",
+                    "last_name": "Bayu Kusuma",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "conversation_id": 1,
+                "created_at": 1496710635,
+                "read": 0
+            }
+        }
+### Detail Conversation [GET /conversations/{id}{?page}{?limit}]
+
++ Parameters
+    + id : 1 (number)
+    + page : 1 (number)
+    + limit: 10 (number)
+
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+  
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Message Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 2
+            },
+            "data":[
+            {
+                "message_id": 1,
+                "content": "Good Morning!",
+                "sender": {
+                    "user_id": 4,
+                    "first_name": "Indra",
+                    "last_name": "Bayu Kusuma",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "recevier": {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "conversation_id": 1,
+                "created_at": 1496710635,
+                "read": 1
+            },
+            {
+                "message_id": 2,
+                "content": "Hello World!",
+                "sender": {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "recevier": {
+                    "user_id": 4,
+                    "first_name": "Indra",
+                    "last_name": "Bayu Kusuma",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "conversation_id": 1,
+                "created_at": 1496710635,
+                "read": 0
+            }]
+        }
+### Read Message [PUT /messages/{id}/read]
+
++ Parameters
+    + id : 1 (number)
+        
++ Request
+
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+          
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Message Data",
+            "data":
+            {
+                "message_id": 2,
+                "content": "Hello World!",
+                "sender": {
+                    "user_id": 2,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "recevier": {
+                    "user_id": 4,
+                    "first_name": "Indra",
+                    "last_name": "Bayu Kusuma",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                "conversation_id": 1,
+                "created_at": 1496710635,
+                "read": 1
+            }
+        }
+    
+## Story Collection [/stories]
+
+### Create Story [POST /stories]
+
++ Request
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+    
+    + Body
+        
+            {
+                "description": "I have unforgetable moment running this afternoon",
+                "privacy": 0,
+                "attachments": "url",
+                "latitude": "-7.771337",
+                "longitude": "110.345976"
+            }
+
++ Response 200 (application/json)
+
+            {
+                "code": 200,
+                "status": true,
+                "message": "Story Data",
+                "data": {}
+            }
+
+### Update Story [PUT /stories/{?id}]
+
++ Request
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+    
+    + Body
+        
+            {
+                "description": "I have unforgetable moment running this afternoon",
+                "privacy": 0,
+                "attachments": "url",
+                "latitude": "-7.771337",
+                "longitude": "110.345976"
+            }
+
++ Response 200 (application/json)
+
+            {
+                "code": 200,
+                "status": true,
+                "message": "Story Data",
+                "data": {}
+            }
+
+### Delete Story [DELETE /stories/{?id}]
+
++ Request
+    + Headers
+
+                Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
++ Response 200 (application/json)
+
+            {
+                "code": 200,
+                "status": true,
+                "message": "Story Data",
+                "data": {}
+            }
