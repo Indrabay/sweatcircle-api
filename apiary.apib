@@ -893,6 +893,31 @@ Sweatcircle app API blueprint
             "message": "Share Activity Data",
             "data": {}
         }
+    
+### Comment Activity [POST /activities/{?id}/comment]
+
++ Request
+    + Headers
+
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Parameters
+        + id: 5 (number, required)
+    
+    + Body 
+
+            {
+                "comment": "This activity is awesome, I want to join this"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Comment Activity Data",
+            "data": {}
+        }
         
 ## Group collection [/groups]
 
@@ -1267,4 +1292,36 @@ Sweatcircle app API blueprint
                     "status_member": 0
                 }]
             }]
+        }
+        
+### Make Admin Group [PUT /groups/{id}/admin]
+
++ Parameters
+    + id : 1 (number)
+    
++ Request (application/json)
+
+        {
+            "user_id": 2
+        }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Group Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 2
+            },
+            "data":
+            {
+                "user_id": 2,
+                "first_name": "Tony",
+                "last_name": "Judt Smith",
+                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "status_member": 1
+                }
         }
