@@ -485,6 +485,103 @@ Sweatcircle app API blueprint
             ]
         }
         
+### List Pending Follower [GET /users/followers/pending?page={?page}&limit={?limit}]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+    + Parameters
+        + page: 1 (number)
+        + limit: 10 (number)
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Follower Data",
+            "meta": {
+                "page": 1,
+                "limit": 10
+            },
+            "data": [
+                {
+                    "id": 3,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "interests": [
+                        {
+                            "sport_id": 2,
+                            "name": "Soccer"
+                        },
+                        {
+                            "sport_id": 3,
+                            "name": "Futsal"
+                        },
+                        {
+                            "sport_id": 4,
+                            "name": "Basketball"
+                        },
+                        {
+                            "sport_id": 5,
+                            "name": "Badminton"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "first_name": "Indra",
+                    "last_name": "Bayu Kusuma",
+                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "interests": [
+                        {
+                            "sport_id": 2,
+                            "name": "Soccer"
+                        },
+                        {
+                            "sport_id": 3,
+                            "name": "Futsal"
+                        },
+                        {
+                            "sport_id": 4,
+                            "name": "Basketball"
+                        },
+                        {
+                            "sport_id": 5,
+                            "name": "Badminton"
+                        }
+                    ]
+                },
+                {
+                    "id": 8,
+                    "first_name": "Yusuf",
+                    "last_name": "Kusuma",
+                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "interests": [
+                        {
+                            "sport_id": 2,
+                            "name": "Soccer"
+                        },
+                        {
+                            "sport_id": 3,
+                            "name": "Futsal"
+                        },
+                        {
+                            "sport_id": 4,
+                            "name": "Basketball"
+                        },
+                        {
+                            "sport_id": 5,
+                            "name": "Badminton"
+                        }
+                    ]
+                }
+            ]
+        }
+
 ## Activity collection [/activities]
 
 ### My Activity [GET /activities/users?page={?page}&limit={?limit}]
