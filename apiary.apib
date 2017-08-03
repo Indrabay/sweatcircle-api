@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://api.sc.project.skyshi.com/
 
 # sweatcircle
 
@@ -128,7 +128,10 @@ Sweatcircle app API blueprint
             }
         }
         
-### Edit Profile [PUT /users]
+### Edit Profile [PUT /users/{id}]
+
++ Parameters
+    + id: 2 (number, required)
 
 + Request
     + Headers
@@ -197,16 +200,17 @@ Sweatcircle app API blueprint
             }
         }
 
-### Get Stories [GET /users/stories?page={?page}&limit={?limit}]
+### Get Stories [GET /users/stories{?page}{?limit}]
 
++ Parameters 
+    + page: 1 (number)
+    + limit: 10 (number)
+        
 + Request
     + Headers
     
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-            
-    + Parameters 
-        + page: 1 (number)
-        + limit: 10 (number)
+
 
 + Response 200 (application/json)
 
@@ -257,17 +261,17 @@ Sweatcircle app API blueprint
             ]
         }
         
-### Get Interest [GET /users/interest?filter={?filter}&page={?page}&limit={?limit}]
+### Get Interest [GET /users/interest{?filter}{?page}{?limit}]
 
++ Parameters
+    + filter: 2 (number)
+    + page: 1 (number)
+    + limit: 10 (number)
+    
 + Request
     + Headers
     
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-            
-    + Parameters
-        + filter: 2 (number)
-        + page: 1 (number)
-        + limit: 10 (number)
             
 + Response 200 (application/json)
 
@@ -319,15 +323,16 @@ Sweatcircle app API blueprint
             ]
         }
         
-### Get Follower [GET /users/followers?page={?page}&limit={?limit}]
+### Get Follower [GET /users/followers{?page}{?limit}]
+
++ Parameters
+    + page: 1 (number)
+    + limit: 10 (number)
+
 + Request
     + Headers
 
                 Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-    
-    + Parameters
-        + page: 1 (number)
-        + limit: 10 (number)
 
 + Response 200 (application/json)
 
@@ -418,16 +423,16 @@ Sweatcircle app API blueprint
             ]
         }
 
-### Get Following [GET /users/following?page={?page}&limit={?limit}]
+### Get Following [GET /users/following{?page}{?limit}]
 
++ Parameters
+    + page: 1 (number)
+    + limit: 10 (number)
+    
 + Request
     + Headers
 
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-        
-    + Parameters
-        + page: 1 (number)
-        + limit: 10 (number)
 
 + Response 200 (application/json)
 
@@ -518,16 +523,16 @@ Sweatcircle app API blueprint
             ]
         }
         
-### List Pending Follower [GET /users/followers/pending?page={?page}&limit={?limit}]
+### List Pending Follower [GET /users/followers/pending{?page}{?limit}]
 
++ Parameters
+    + page: 1 (number)
+    + limit: 10 (number)
+        
 + Request
     + Headers
     
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-
-    + Parameters
-        + page: 1 (number)
-        + limit: 10 (number)
 
 + Response 200 (application/json)
 
@@ -617,16 +622,16 @@ Sweatcircle app API blueprint
 
 ## Activity collection [/activities]
 
-### My Activity [GET /activities/users?page={?page}&limit={?limit}]
+### My Activity [GET /activities/users{?page}{?limit}]
 
++ Parameters
+    + page: 1 (number)
+    + limit: 10 (number)
+    
 + Request
     + Headers
     
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-            
-    + Parameters
-        + page: 1 (number)
-        + limit: 10 (number)
         
 + Response 200 (application/json)
 
@@ -677,18 +682,18 @@ Sweatcircle app API blueprint
             ]
         }
 
-### Discover Activity [GET /activities?page={?page}&limit={?limit}&latitude={?latitude}&longitude={?longitude}]
+### Discover Activity [GET /activities{?page}{?limit}{?latitude}{?longitude}]
+
++ Parameters
+    + page: 1 (number)
+    + limit: 10 (number)
+    + latitude: "-7.771337" (string)
+    + longitude: "110.345976" (string)
 
 + Request
     + Headers
     
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-            
-    + Parameters
-        + page: 1 (number)
-        + limit: 10 (number)
-        + latitude: "-7.771337" (string)
-        + longitude: "110.345976" (string)
         
 + Response 200 (application/json)
 
@@ -766,8 +771,11 @@ Sweatcircle app API blueprint
             "data": {}
         }
 
-### Update Activity [PUT /users/activities/{?id}]
+### Update Activity [PUT /users/activities/{id}]
 
++ Parameters
+    + id: 2 (number, required)
+    
 + Request
     + Headers
         
@@ -815,15 +823,15 @@ Sweatcircle app API blueprint
             "data": {}
         }
 
-### Detail Activity [GET /users/activities/{?id}]
+### Detail Activity [GET /users/activities/{id}]
 
++ Parameters
+    + id: 2 (number, required)
+        
 + Request
     + Headers
 
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-
-    + Parameters
-        + id: 2 (number, required)
 
 + Response 200 (application/json)
 
@@ -848,7 +856,10 @@ Sweatcircle app API blueprint
             }
         }
 
-### Complete Activity [PUT /users/activies/{?id}/completed]
+### Complete Activity [PUT /users/activies/{id}/completed]
+
++ Parameters
+    + id: 2
 
 + Request
     + Headers
@@ -872,7 +883,10 @@ Sweatcircle app API blueprint
             "data": {}
         }
 
-### Delete Activity [DELETE /users/activities/{?id}]
+### Delete Activity [DELETE /users/activities/{id}]
+
++ Parameters
+    + id: 2 (number, required)
 
 + Request
     + Headers
@@ -888,15 +902,15 @@ Sweatcircle app API blueprint
             "data": {}
         }
 
-### Like Activity [POST /activities/{?id}/like]
+### Like Activity [POST /activities/{id}/like]
+
++ Parameters
+    + id: 5 (number, required)
 
 + Request
     + Headers
 
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-
-    + Parameters
-        + id: 5 (number, required)
 
 
 + Response 200 (application/json)
@@ -908,15 +922,16 @@ Sweatcircle app API blueprint
             "data": {}
         }
 
-### Share Activity [PUT /activities/{?id}/share]
+### Share Activity [PUT /activities/{id}/share]
+
++ Parameters
+    + id: 5 (number, required)
 
 + Request
     + Headers
 
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
 
-    + Parameters
-        + id: 5 (number, required)
 
 + Response 200 (application/json)
 
@@ -927,15 +942,15 @@ Sweatcircle app API blueprint
             "data": {}
         }
     
-### Comment Activity [POST /activities/{?id}/comment]
+### Comment Activity [POST /activities/{id}/comment]
+
++ Parameters
+    + id: 5 (number, required)
 
 + Request
     + Headers
 
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
-
-    + Parameters
-        + id: 5 (number, required)
     
     + Body 
 
@@ -1662,7 +1677,10 @@ Sweatcircle app API blueprint
                 "data": {}
             }
 
-### Update Story [PUT /stories/{?id}]
+### Update Story [PUT /stories/{id}]
+
++ Parameters
+    + id: 2 (number, required)
 
 + Request
     + Headers
@@ -1688,7 +1706,10 @@ Sweatcircle app API blueprint
                 "data": {}
             }
 
-### Delete Story [DELETE /stories/{?id}]
+### Delete Story [DELETE /stories/{id}]
+
++ Parameters
+    + id: 2 (number, required)
 
 + Request
     + Headers
