@@ -619,6 +619,192 @@ Sweatcircle app API blueprint
                 }
             ]
         }
+        
+### Discover User [GET /users/{?sport}{?latitude}{?longitude}{?page}{?limit}]
+
++ Parameters
+    + sport (number, `1`)
+    + latitude (string, `-7.771337`)
+    + longitude (string, `110.345976`)
+    + page: 1 (number)
+    + limit: 10 (number)
+        
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "List User Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 2
+            },
+            "data": [
+                {
+                    "id": 3,
+                    "first_name": "Tony",
+                    "last_name": "Judt Smith",
+                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "interests": [
+                        {
+                            "sport_id": 2,
+                            "name": "Soccer",
+                            "level": 1
+                        },
+                        {
+                            "sport_id": 3,
+                            "name": "Futsal",
+                            "level": 1
+                        },
+                        {
+                            "sport_id": 4,
+                            "name": "Basketball",
+                            "level": 1
+                        },
+                        {
+                            "sport_id": 5,
+                            "name": "Badminton",
+                            "level": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "first_name": "Indra",
+                    "last_name": "Bayu Kusuma",
+                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "interests": [
+                        {
+                            "sport_id": 2,
+                            "name": "Soccer",
+                            "level": 1
+                        },
+                        {
+                            "sport_id": 3,
+                            "name": "Futsal",
+                            "level": 1
+                        },
+                        {
+                            "sport_id": 4,
+                            "name": "Basketball",
+                            "level": 1
+                        },
+                        {
+                            "sport_id": 5,
+                            "name": "Badminton",
+                            "level": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 8,
+                    "first_name": "Yusuf",
+                    "last_name": "Kusuma",
+                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "interests": [
+                        {
+                            "sport_id": 2,
+                            "name": "Soccer"
+                        },
+                        {
+                            "sport_id": 3,
+                            "name": "Futsal"
+                        },
+                        {
+                            "sport_id": 4,
+                            "name": "Basketball"
+                        },
+                        {
+                            "sport_id": 5,
+                            "name": "Badminton"
+                        }
+                    ]
+                }
+            ]
+        }
+        
+## Request OTP [GET /users/otp/request]
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Activity Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 2
+            },
+            "data": {
+                "user_id": 2,
+                "first_name": "Tony",
+                "last_name": "Judt Smith",
+                "display_name": "PramSmith",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "email": "pram@skyshi.com",
+                "status": 1,
+                "privacy": 1,
+                "created_at": 1496710635,
+                "request_id": "8982ca633de24a04a8689d52e771b34e"
+            }
+        }
+
+## Confirm OTP [POST /users/otp/confirm]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
+    + Body
+
+            {
+                "request_id": "8982ca633de24a04a8689d52e771b34e",
+                "code": "1254"
+            }
+        
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "List User Data",
+            "meta": {
+                "page": 1,
+                "limit": 10,
+                "total": 2
+            },
+            "data": 
+            {
+                "user_id": 2,
+                "first_name": "Tony",
+                "last_name": "Judt Smith",
+                "display_name": "PramSmith",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "email": "pram@skyshi.com",
+                "status": 1,
+                "privacy": 1,
+                "created_at": 1496710635,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs"
+            }
+        }
 
 ## Activity collection [/activities]
 
