@@ -261,10 +261,42 @@ Sweatcircle app API blueprint
             ]
         }
         
-### Get Interest [GET /users/interest{?filter}{?page}{?limit}]
+### Get Sport [GET /users/sports]
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Sports Data",
+            "data": [
+                {
+                    "id": 2,
+                    "name": "Badminton",
+                    "level": 4
+                },
+                {
+                    "id": 3,
+                    "name": "Tennis",
+                    "level": 2
+                },
+                {
+                    "id": 4,
+                    "name": "Table Tennis",
+                    "level": 3
+                }
+            ]
+        }
+        
+### Get Activity & Group [GET /users/activity-group{?id_sport}{?page}{?limit}]
 
 + Parameters
-    + filter: 2 (number)
+    + id_sport: 2 (number)
     + page: 1 (number)
     + limit: 10 (number)
     
@@ -729,7 +761,7 @@ Sweatcircle app API blueprint
             ]
         }
         
-## Request OTP [GET /users/otp/request]
+### Request OTP [GET /users/otp/request]
 + Request
     + Headers
     
@@ -740,12 +772,7 @@ Sweatcircle app API blueprint
         {
             "code": 200,
             "status": true,
-            "message": "Activity Data",
-            "meta": {
-                "page": 1,
-                "limit": 10,
-                "total": 2
-            },
+            "message": "User Data",
             "data": {
                 "user_id": 2,
                 "first_name": "Tony",
@@ -763,7 +790,7 @@ Sweatcircle app API blueprint
             }
         }
 
-## Confirm OTP [POST /users/otp/confirm]
+### Confirm OTP [POST /users/otp/confirm]
 
 + Request
     + Headers
@@ -782,12 +809,64 @@ Sweatcircle app API blueprint
         {
             "code": 200,
             "status": true,
-            "message": "List User Data",
-            "meta": {
-                "page": 1,
-                "limit": 10,
-                "total": 2
-            },
+            "message": "User Data",
+            "data": 
+            {
+                "user_id": 2,
+                "first_name": "Tony",
+                "last_name": "Judt Smith",
+                "display_name": "PramSmith",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "email": "pram@skyshi.com",
+                "status": 1,
+                "privacy": 1,
+                "created_at": 1496710635,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs"
+            }
+        }
+        
+### Forgot Password [POST /passwords/forgot]
++ Request
+    + Body
+    
+            {
+                "phone": "+6282143375113"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Password Data",
+            "data": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs",
+                "request_id": "8982ca633de24a04a8689d52e771b34e"
+            }
+        }
+        
+### Confirm Password [POST /passwords/confirm]
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
+    + Body
+
+            {
+                "request_id": "8982ca633de24a04a8689d52e771b34e",
+                "code": "1254"
+            }
+        
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Data",
             "data": 
             {
                 "user_id": 2,
@@ -1135,7 +1214,7 @@ Sweatcircle app API blueprint
 
 + Request
     + Headers
-
+    
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
     
     + Body 
@@ -1967,3 +2046,114 @@ Sweatcircle app API blueprint
                 "message": "Story Data",
                 "data": {}
             }
+            
+## Notification Collection [/notifications]
+
+### List Notification [GET /notifications{?page}{?limit}]
+
++ Parameters
+    + page: 1 (number)
+    + limit: 10 (number)
+
++ Request
+    + Headers
+        
+                Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
++ Response 200 (application/json)
+
+            {
+                "code": 200,
+                "status": true,
+                "message": "Notification Data",
+                "data": [
+                    {
+                        "id": 1,
+                        "type": 0,
+                        "message": "started following",
+                        "user": {
+                            "id": 3,
+                            "username": "james"
+                        },
+                        "activity": null,
+                        "group": null
+                    },
+                    {
+                        "id": 2,
+                        "type": 1,
+                        "message": "likes your",
+                        "user": {
+                            "id": 5,
+                            "username": "Pram"
+                        },
+                        "activity": null,
+                        "group": null
+                    }
+                ]
+            }
+        
+## Feed Collection [/feeds]
+
+### List Feeds [GET /feeds{?sort}{?page}{?limit}]
+
++ Parameters
+    + sort: "newest" (string)
+    + page: 1 (number)
+    + limit: 10 (number)
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+                        
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Interest Data",
+            "meta": {
+                "page": 1,
+                "limit": 10
+            },
+            "data": [
+                {
+                    "id": 4,
+                    "type": 1,
+                    "id_of_type": 5,
+                    "name": "Skyshi League",
+                    "description": "Skyshi tournament",
+                    "attachments": [
+                        {
+                            "id": 88,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "start_at": 1496710635,
+                    "end_at": 1496710635,
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
+                    "like_id": 2,
+                    "comment_id": 5
+                },
+                {
+                    "id": 3,
+                    "type": 0,
+                    "id_of_type": 5,
+                    "name": "Skyshi Badminton",
+                    "description": "",
+                    "attachments": [
+                        {
+                            "id": 88,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "start_at": null,
+                    "end_at": null,
+                    "latitude": "",
+                    "longitude": "",
+                    "like_id": 1,
+                    "comment_id": 3
+                }
+            ]
+        }
