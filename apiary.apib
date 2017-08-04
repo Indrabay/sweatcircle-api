@@ -2046,6 +2046,32 @@ Sweatcircle app API blueprint
                 "message": "Story Data",
                 "data": {}
             }
+
+### Get Story Detail [GET /stories/{id}]
+
++ Parameters
+    + id: 2
+
++ Request
+    + Headers
+    
+                Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Story Data",
+            "data": {
+               "id": 2,
+               "message": "Beautiful circumstance this afternoon after I was running",
+               "comment_id": 6,
+               "like_id": 8,
+               "latitude": "-7.771337",
+               "longitude": "110.345976",
+            }
+        }
             
 ## Notification Collection [/notifications]
 
