@@ -7,7 +7,8 @@ Sweatcircle app API blueprint
 
 ## User Collection [/]
 
-### Login [POST /login ]
+### Login [POST /users/login]
+> Ready
 
 + Request (application/json)
 
@@ -39,12 +40,12 @@ Sweatcircle app API blueprint
             }
         }
 
-### Login Facebook [POST /social-login]
+### Login Facebook [POST /users/social-login]
 
 + Request (application/json)
 
             {
-                "provider_name": "Facebook",
+                "provider_name": "facebook",
                 "provider_uid": "12345678",
                 "access_token": "EAAViKAqZCMswBAM1UqlZBZAFRd6OyX0C5b9VpVU0mO0dKWduiZBRC2BqJ3wvHyKkJqUz53IUkr0RBByiFtWWRFcBtV3ZBUA8vSQCnbVvD76vTzuF75YtixmN5K0v00eN0u5DHfGGasSzUYWAOKYfkXglmL4DMMZB8aspE5bqN57h2sNO5CT8Nwhmz7kfbgZCBIZD"
             }
@@ -62,7 +63,7 @@ Sweatcircle app API blueprint
                     "display_name": "PramSmith",
                     "latitude": "-7.771337",
                     "longitude": "110.345976",
-                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "photo_profile": "http://resepdan masakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
                     "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
                     "email": "pram@skyshi.com",
                     "status": 1,
@@ -77,7 +78,7 @@ Sweatcircle app API blueprint
 + Request (application/json)
 
         {
-            "phone": "0821934853485",
+            "phone": "+62821934853485",
             "email": "pram@skyshi.com",
             "password": "user"
         }
@@ -91,7 +92,10 @@ Sweatcircle app API blueprint
             "data": {}
         }
 
-### Get Profile [GET /users]
+### Get Profile [GET /users/{id}]
+
++ Parameters
+    + id: 2 (number, required)
 
 + Request
     + Headers
@@ -105,26 +109,26 @@ Sweatcircle app API blueprint
             "status": true,
             "message": "User Profile Data",
             "data": {
-                "user": {
-                    "user_id": 2,
-                    "first_name": "Tony",
-                    "last_name": "Judt Smith",
-                    "display_name": "PramSmith",
-                    "latitude": "-7.771337",
-                    "longitude": "110.345976",
-                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
-                    "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
-                    "email": "pram@skyshi.com",
-                    "status": 1,
-                    "privacy": 1,
-                    "created_at": 1496710635
-                },
-                "follow": {
-                    "follower": 800,
-                    "following": 20
-                },
+                "user_id": 2,
+                "first_name": "Tony",
+                "last_name": "Judt Smith",
+                "display_name": "PramSmith",
+                "latitude": "-7.771337",
+                "longitude": "110.345976",
+                "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                "email": "pram@skyshi.com",
+                "gender": 1,
+                "description": "This is a description",
+                "privacy": 1,
+                "created_at": 1496710635,
+                "follower_count": 800,
+                "following_count": 20,
                 "group_count": 39,
-                "event_count": 30
+                "activity_count": 30,
+                "follower": false,
+                "following": false,
+                "follow_request_sent": true 
             }
         }
         
@@ -200,9 +204,10 @@ Sweatcircle app API blueprint
             }
         }
 
-### Get Stories [GET /users/stories{?page}{?limit}]
+### Get Stories [GET /users/{id}/stories{?page}{?limit}]
 
 + Parameters 
+    + id (number, required, `1`)
     + page: 1 (number)
     + limit: 10 (number)
         
@@ -261,7 +266,10 @@ Sweatcircle app API blueprint
             ]
         }
         
-### Get Sport [GET /users/sports]
+### Get Sport [GET /users/{id}/sports]
+
++ Parameters
+    + id (number, required, `1`)
 
 + Request
     + Headers
@@ -355,9 +363,10 @@ Sweatcircle app API blueprint
             ]
         }
         
-### Get Follower [GET /users/followers{?page}{?limit}]
+### Get Follower [GET /users/{id}/followers{?page}{?limit}]
 
 + Parameters
+    + id (number, `1`) ...User ID
     + page: 1 (number)
     + limit: 10 (number)
 
@@ -374,7 +383,8 @@ Sweatcircle app API blueprint
             "message": "User Follower Data",
             "meta": {
                 "page": 1,
-                "limit": 10
+                "limit": 10,
+                "total": 3
             },
             "data": [
                 {
@@ -455,9 +465,10 @@ Sweatcircle app API blueprint
             ]
         }
 
-### Get Following [GET /users/following{?page}{?limit}]
+### Get Following [GET /users/{id}/following{?page}{?limit}]
 
 + Parameters
+    + id (number, `1`) ...User ID
     + page: 1 (number)
     + limit: 10 (number)
     
@@ -474,7 +485,8 @@ Sweatcircle app API blueprint
             "message": "User Following Data",
             "meta": {
                 "page": 1,
-                "limit": 10
+                "limit": 10,
+                "total": 3
             },
             "data": [
                 {
@@ -555,9 +567,10 @@ Sweatcircle app API blueprint
             ]
         }
         
-### List Pending Follower [GET /users/followers/pending{?page}{?limit}]
+### List Pending Follower [GET /users/{id}/followers/pending{?page}{?limit}]
 
 + Parameters
+    + id (number, `1`) ...User ID
     + page: 1 (number)
     + limit: 10 (number)
         
@@ -682,7 +695,11 @@ Sweatcircle app API blueprint
                     "id": 3,
                     "first_name": "Tony",
                     "last_name": "Judt Smith",
-                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    
+                    "group_count": 39,
+                    "event_count": 30
                     "interests": [
                         {
                             "sport_id": 2,
@@ -882,6 +899,46 @@ Sweatcircle app API blueprint
                 "privacy": 1,
                 "created_at": 1496710635,
                 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs"
+            }
+        }
+        
+## Follow Collection [/follows]
+
+### Request Follow [POST /follows]
+
++ Request (application/json)
+
+        {
+            "user_id": "3"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "statue": true,
+            "message": "Follow Data",
+            "data": {
+                
+            }
+        }
+        
+### Unfollow [DELETE /follows]
+
++ Request (application/json)
+
+        {
+            "user_id": "3"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "statue": true,
+            "message": "Follow Data",
+            "data": {
+                
             }
         }
 
