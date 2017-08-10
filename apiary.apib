@@ -210,69 +210,71 @@ Sweatcircle app API blueprint
             }
         }
 
-### Get Stories [GET /users/{id}/stories{?page}{?limit}]
+### Update User Sport [PUT /users/{id}/sports]
 
-+ Parameters 
-    + id (number, required, `1`)
-    + page: 1 (number)
-    + limit: 10 (number)
-        
++ Parameters
+    + id: 2 (number, required)
+
 + Request
     + Headers
     
             Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
 
-
-+ Response 200 (application/json)
+    + Body
+        
+            {
+                "sports": [
+                    {
+                        "id": 1,
+                        "level": 3
+                    },
+                    {
+                        "id": 3,
+                        "level": 5
+                    },
+                    {
+                        "id": 6,
+                        "level": 2
+                    },
+                    {
+                        "id": 8,
+                        "level": 5
+                    },
+                    {
+                        "id": 10,
+                        "level": 2
+                    }
+                ]
+            }
+    
++ Response 201 (application/json)
 
         {
+            
             "code": 200,
             "status": true,
-            "message": "User Stories Data",
-            "meta": {
-                "page": 1,
-                "limit": 10,
-            }
+            "message": "User Data",
             "data": [
-                {
-                    "id": 3,
-                    "content": "We are proudly present our new swimmer",
-                    "attachments": [
                         {
-                            "id": 4,
-                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                          "id": 1,
+                          "name": "Badminton",
+                          "level": 3
                         },
                         {
-                            "id": 8,
-                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
-                        }
-                    ],
-                    "like_id": 77,
-                    "comment_id": 75
-                },
-                {
-                    "id": 2,
-                    "content": "Every winner should know this great technique",
-                    "attachments": [],
-                    "like_id": 7,
-                    "comment_id": 65
-                },
-                {
-                    "id": 1,
-                    "content": "Get your fat down to zero with me",
-                    "attachments": [
+                          "id": 3,
+                          "name": "Tennis",
+                          "level": 5
+                        },
                         {
-                            "id": 90,
-                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                          "id": 6,
+                          "name": "Table Tennis",
+                          "level": 2
                         }
-                    ],
-                    "like_id": 3,
-                    "comment_id": 34
-                }
-            ]
+                     ]
         }
-        
-### Get Sport [GET /users/{id}/sports]
+
+     
+### Get User Sport [GET /users/{id}/sports]
 
 + Parameters
     + id (number, required, `1`)
@@ -306,11 +308,98 @@ Sweatcircle app API blueprint
                 }
             ]
         }
-        
-### Get Activity & Group [GET /users/activity-group{?id_sport}{?page}{?limit}]
+
+### Delete User Sport [DELETE /users/{user_id}/sports/{sport_id}]
 
 + Parameters
-    + id_sport: 2 (number)
+    + user_id (number, required, `1`)
+    + sport_id (number, required, `1`)
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+            
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Sports Data",
+            "data": {}
+        }
+        
+### Get Stories [GET /users/{id}/stories{?page}{?limit}]
+
++ Parameters 
+    + id (number, required, `1`)
+    + page: 1 (number)
+    + limit: 10 (number)
+        
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "User Stories Data",
+            "meta": {
+                "page": 1,
+                "limit": 10
+            },
+            "data": [
+                {
+                    "id": 3,
+                    "content": "We are proudly present our new swimmer",
+                    "attachments": [
+                        {
+                            "id": 4,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        },
+                        {
+                            "id": 8,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "likes_count": 77,
+                    "comments_count": 75,
+                    "total_shared": 2
+                },
+                {
+                    "id": 2,
+                    "content": "Every winner should know this great technique",
+                    "attachments": [],
+                    "likes_count": 7,
+                    "comments_counts": 65,
+                    "total_shared": 2
+                    
+                },
+                {
+                    "id": 1,
+                    "content": "Get your fat down to zero with me",
+                    "attachments": [
+                        {
+                            "id": 90,
+                            "url": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                        }
+                    ],
+                    "likes_count": 3,
+                    "comments_count": 34,
+                    "total_shared": 2
+                }
+            ]
+        }
+      
+### Get Activity & Group [GET /users/{user_id}/activity-group{?sport_id}{?page}{?limit}]
+
++ Parameters
+    + user_id (number, `1`)
+    + sport_id: 2 (number)
     + page: 1 (number)
     + limit: 10 (number)
     
@@ -324,7 +413,7 @@ Sweatcircle app API blueprint
         {
             "code": 200,
             "status": true,
-            "message": "User Interest Data",
+            "message": "User Activity Data",
             "meta": {
                 "page": 1,
                 "limit": 10
@@ -345,8 +434,9 @@ Sweatcircle app API blueprint
                     "end_data": 1496710635,
                     "latitude": "-7.771337",
                     "longitude": "110.345976",
-                    "like_id": 2,
-                    "comment_id": 5
+                    "likes_count": 2,
+                    "comments_count": 5,
+                    "total_shared": 2
                 },
                 {
                     "id": 3,
@@ -363,8 +453,9 @@ Sweatcircle app API blueprint
                     "end_data": null,
                     "latitude": "",
                     "longitude": "",
-                    "like_id": 1,
-                    "comment_id": 3
+                    "likes_count": 1,
+                    "comments_count": 3,
+                    "total_shared": 2
                 }
             ]
         }
@@ -671,14 +762,14 @@ Sweatcircle app API blueprint
             ]
         }
         
-### Discover User [GET /users/{?sport}{?latitude}{?longitude}{?page}{?limit}]
+### Discover User [GET /users/{id}/discover{?filter}{?lat}{?long}]
+> Ready
 
 + Parameters
-    + sport (number, `1`)
-    + latitude (string, `-7.771337`)
-    + longitude (string, `110.345976`)
-    + page: 1 (number)
-    + limit: 10 (number)
+    + id (number, `1`)
+    + filter (number)
+    + lat (string, `-7.77137`)
+    + long (string, `110.234596`)
         
 + Request
     + Headers
@@ -2287,6 +2378,48 @@ Sweatcircle app API blueprint
                     "longitude": "",
                     "like_id": 1,
                     "comment_id": 3
+                }
+            ]
+        }
+        
+## Sport Collection [/sports]
+
+### List Master Sport [GET /sports{?page}{?limit}]
+
++ Parameters
+    + page: 1 (number)
+    + limit: 10 (number)
+
++ Request
+    + Headers
+    
+            Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VycyI6NTAsImlhdCI6MTUwMTEyMzA2Nn0.oACCBFw0_vCrT0gs4r78hrYTYGVFFJpkyiRsSchlNHs
+                        
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "status": true,
+            "message": "Sport Data",
+            "meta": {
+                "page": 1,
+                "limit": 10
+            },
+            "data": [
+                {
+                    "sport_id": 1,
+                    "name": "Badminton",
+                    "image": ""
+                },
+                {
+                    "sport_id": 2,
+                    "name": "Tenis",
+                    "image": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg"
+                },
+                {
+                    "sport_id": 3,
+                    "name": "Futsal",
+                    "image": ""
                 }
             ]
         }
