@@ -41,6 +41,7 @@ Sweatcircle app API blueprint
         }
 
 ### Login Facebook [POST /users/social-login]
+> Ready
 
 + Request (application/json)
 
@@ -89,8 +90,17 @@ Sweatcircle app API blueprint
             "code": 200,
             "status": true,
             "message": "User Data",
-            "data": {}
+            "data": {
+                "user_id": 26,
+                "phone": "+62821934853485",
+                "email": "pram@skyshi.com",
+                "status": 0,
+                "privacy": 1,
+                "request_id": "e208479d595e49c5a5098a102fbe176f",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNiwiaWF0IjoxNTAyMjY4NDE5fQ.pALL06mEWF0-vTyoKveno63nr1JwFDgi6orIuQf0AXs"
+            }
         }
+
 
 ### Get Profile [GET /users/{id}]
 
@@ -150,31 +160,27 @@ Sweatcircle app API blueprint
                 "longitude": "110.345976",
                 "email": "pram@skyshi.com",
                 "password": "user",
+                "description": "This is a description",
                 "privacy": 1,
                 "sports": [
                     {
                         "id": 1,
-                        "name": "badminton",
                         "level": 3
                     },
                     {
                         "id": 3,
-                        "name": "cycling",
                         "level": 5
                     },
                     {
                         "id": 6,
-                        "name": "hiking",
                         "level": 2
                     },
                     {
                         "id": 8,
-                        "name": "volleyball",
                         "level": 5
                     },
                     {
                         "id": 10,
-                        "name": "zumba",
                         "level": 2
                     }
                 ]
@@ -692,14 +698,27 @@ Sweatcircle app API blueprint
             },
             "data": [
                 {
-                    "id": 3,
+                    "user_id": 2,
                     "first_name": "Tony",
                     "last_name": "Judt Smith",
+                    "display_name": "PramSmith",
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
                     "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
                     "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
-                    
+                    "email": "pram@skyshi.com",
+                    "gender": 1,
+                    "description": "This is a description",
+                    "privacy": 1,
+                    "created_at": 1496710635,
+                    "follower_count": 800,
+                    "following_count": 20,
                     "group_count": 39,
-                    "event_count": 30
+                    "activity_count": 30,
+                    "follower": false,
+                    "following": false,
+                    "follow_request_sent": true,
+                    "distance": 5625,
                     "interests": [
                         {
                             "sport_id": 2,
@@ -724,54 +743,47 @@ Sweatcircle app API blueprint
                     ]
                 },
                 {
-                    "id": 5,
-                    "first_name": "Indra",
-                    "last_name": "Bayu Kusuma",
-                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
-                    "interests": [
-                        {
-                            "sport_id": 2,
-                            "name": "Soccer",
-                            "level": 1
-                        },
-                        {
-                            "sport_id": 3,
-                            "name": "Futsal",
-                            "level": 1
-                        },
-                        {
-                            "sport_id": 4,
-                            "name": "Basketball",
-                            "level": 1
-                        },
-                        {
-                            "sport_id": 5,
-                            "name": "Badminton",
-                            "level": 1
-                        }
-                    ]
-                },
-                {
-                    "id": 8,
+                    "user_id": 3,
                     "first_name": "Yusuf",
-                    "last_name": "Kusuma",
-                    "profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "last_name": "Aji Wibowo",
+                    "display_name": "PramSmith",
+                    "latitude": "-7.771337",
+                    "longitude": "110.345976",
+                    "photo_profile": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "photo_cover": "http://resepdanmasakan.com/wp-content/uploads/2015/09/Resep-Klepon-Isi-Gula-Merah-Kenyal-Meleleh.jpg",
+                    "email": "pram@skyshi.com",
+                    "gender": 1,
+                    "description": "This is a description",
+                    "privacy": 1,
+                    "created_at": 1496710635,
+                    "follower_count": 800,
+                    "following_count": 20,
+                    "group_count": 39,
+                    "activity_count": 30,
+                    "follower": false,
+                    "following": false,
+                    "follow_request_sent": true,
+                    "distance": 1024,
                     "interests": [
                         {
                             "sport_id": 2,
-                            "name": "Soccer"
+                            "name": "Soccer",
+                            "level": 1
                         },
                         {
                             "sport_id": 3,
-                            "name": "Futsal"
+                            "name": "Futsal",
+                            "level": 1
                         },
                         {
                             "sport_id": 4,
-                            "name": "Basketball"
+                            "name": "Basketball",
+                            "level": 1
                         },
                         {
                             "sport_id": 5,
-                            "name": "Badminton"
+                            "name": "Badminton",
+                            "level": 1
                         }
                     ]
                 }
@@ -924,6 +936,44 @@ Sweatcircle app API blueprint
         }
         
 ### Unfollow [DELETE /follows]
+
++ Request (application/json)
+
+        {
+            "user_id": "3"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "statue": true,
+            "message": "Follow Data",
+            "data": {
+                
+            }
+        }
+        
+### Accept Request Follow [POST /follows/accept]
+
++ Request (application/json)
+
+        {
+            "user_id": "3"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "code": 200,
+            "statue": true,
+            "message": "Follow Data",
+            "data": {
+                
+            }
+        }
+        
+### Reject Request Follow [POST /follows/reject]
 
 + Request (application/json)
 
